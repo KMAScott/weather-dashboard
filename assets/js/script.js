@@ -64,5 +64,37 @@ function getWeather(data) {
             }
 
             currentConditionsEl.append(currentUvEl);
+
+            var fiveDayForecastTitleEl = $("#fiveDayForecastTitle");
+            var fiveDayTitleEl = $("<h2>");
+            fiveDayTitleEl.text("5-Day Forecast:");
+            fiveDayForecastTitleEl.append(fiveDayTitleEl);
+
+            var fiveDayForecastEl = $("#fiveDayForecast");
+
+            for (var i = 1; i <= 5; i++) {
+                var date;
+                var temp;
+                var icon;
+                var humidity;
+
+                date = data.daily[i].dt;
+                date = dayjs().get('date').format('MM/DD/YYYY');
+                temp = data.daily[i].temp.day;
+                icon = data.daily[i].weather[0].icon;
+                wind = data.daily[i].wind_speed;
+                humidity = data.daily[i].humidity;
+
+                var card = document.createElement("div");
+                card.classList.add("card", "col-2", "m-1", "bg-primary", "text-white");
+
+                var cardBody = document.createElement("div");
+                cardBody.classList.add("card-body");
+                cardBody.innerHTML = "<h6>${date}</h6><img src='http://openweathermap.org/img/wn${icon}.png></><br>${temp}°F<br>${wind} MPH<br>${humidity}%"
+                card.appendChild(cardBody);
+                fiveDayForecastEl.append(card);
+            }
         })
+    return;
 }
+
