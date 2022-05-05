@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    text-align: center;
+    color: white;
+    background-image: radial-gradient(circle, #0345fc, #03a9fc, #f5ec42);
+}
+
+header h1 {
+    padding: 20px;
+}
