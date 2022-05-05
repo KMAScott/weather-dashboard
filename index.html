@@ -16,11 +16,11 @@
         <div class="col-3">
             <form>
                 <h2>Search for a City:</h2>
-                <input class="form-control my-2 text-primary" type="search" placeholder="Search" id="city-input">
+                <input class="form-control my-2 text-primary" type="search" placeholder="Search" id="cityInput">
                 <button class="btn btn-outline-primary my-2" style="width: 100%;" type="submit" id="searchButton">Search</button>
             </form>
             <button class="btn btn-outline-primary my-2" style="width: 100%;" type="submit" id="clearHistoryBtn">Clear History</button>
-            <div class="border-top border-primary">
+            <div class="border-top border-primary" id="pastSearches">
                 <!-- Past Search Buttons-->
             </div>
         </div>
@@ -32,6 +32,8 @@
             <div class="d-flex flex-row flex-wrap justify-content-between" id="fiveDayForecast"></div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.1/dayjs.min.js" integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
