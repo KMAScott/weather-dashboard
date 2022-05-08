@@ -73,7 +73,7 @@ function getWeather(data) {
             for (var i = 0; i <= 4; i++) {
 
                 var card = document.createElement("div");
-                card.classList.add("card", "col-2", "m-1", "bg-primary", "text-white");
+                card.classList.add("card", "col-2", "m-1", "bg-primary", "text-white", "w-auto");
     
                 var cardBody = document.createElement("div");
                 cardBody.classList.add("card-body");

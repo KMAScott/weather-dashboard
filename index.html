@@ -13,7 +13,7 @@
         <h1>Weather Dashboard</h1>
     </header>
     <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-md-3">
             <form>
                 <h2>Search for a City:</h2>
                 <input class="form-control my-2 text-primary" type="search" placeholder="Search" id="cityInput">
@@ -25,11 +25,11 @@
             </div>
         </div>
 
-        <div class="column col-9">
+        <div class="column col-12 col-md-9">
             <div class="row" id="currentConditions"></div>
 
             <div class="row" id="fiveDayForecastTitle"></div>
-            <div class="d-flex flex-row flex-wrap justify-content-between" id="fiveDayForecast"></div>
+            <div class="d-flex justify-content-md-between flex-wrap" id="fiveDayForecast"></div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.1/dayjs.min.js" integrity="sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
