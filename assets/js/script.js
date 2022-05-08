@@ -1,5 +1,7 @@
 var APIkey = "feac6823ef10156c3b50861b18206856";
-
+var currentConditionsEl = $("#currentConditions");
+var fiveDayForecastTitleEl = $("#fiveDayForecastTitle");
+var fiveDayForecastEl = $("#fiveDayForecast");
 var cityInput = $("#cityInput")
 var searchButton = $("#searchButton")
 var clearButton = $("#clearHistoryBtn")
@@ -12,7 +14,7 @@ function getWeather(data) {
             return response.json();
         })
         .then(function(data) {
-            var currentConditionsEl = $("#currentConditions");
+
             currentConditionsEl.addClass("border border-primary");
 
             var cityNameEl = $("<h2>");
@@ -21,7 +23,7 @@ function getWeather(data) {
 
             var currentCityDate = dayjs().format('MM/DD/YYYY');
             var currentDateEl = $("<span>");
-            currentDateEl.text(currentCityDate);
+            currentDateEl.text("  " + currentCityDate);
             cityNameEl.append(currentDateEl);
 
             var currentCityWeatherIcon = data.current.weather[0].icon;
@@ -64,29 +66,51 @@ function getWeather(data) {
 
             currentConditionsEl.append(currentUvEl);
 
-            var fiveDayForecastTitleEl = $("#fiveDayForecastTitle");
             var fiveDayTitleEl = $("<h2>");
             fiveDayTitleEl.text("5-Day Forecast:");
             fiveDayForecastTitleEl.append(fiveDayTitleEl);
 
-            var fiveDayForecastEl = $("#fiveDayForecast");
-
-            for (var i = 1; i <= 5; i++) {
-                var date = dayjs().add(i + 1, "days").format('MM/DD');
-                var temp = data.daily[i].temp.day;
-                var icon = data.daily[i].weather[0].icon;
-                var wind = data.daily[i].wind_speed;
-                var humidity = data.daily[i].humidity;
+            for (var i = 0; i <= 4; i++) {
 
                 var card = document.createElement("div");
                 card.classList.add("card", "col-2", "m-1", "bg-primary", "text-white");
-
+    
                 var cardBody = document.createElement("div");
                 cardBody.classList.add("card-body");
-                cardBody.innerHTML = "<h4>" + date + "</h4>, <img src='http://openweathermap.org/img/wn/" + icon + "@2x.png>, <br>, <p>" + temp + "°F</p>, <br>, <p>" + wind + "MPH</p>, <br>, <p>" + humidity + "%</p>"
-                card.appendChild(cardBody);
+
+                var date = dayjs().add(i + 1, "days").format('MM/DD');
+                var futureDateEl = document.createElement("h2");
+                futureDateEl.classList.add("card-title");
+                futureDateEl.append(date);
+                cardBody.append(futureDateEl);
+
+                var icon = data.daily[i].weather[0].icon;
+                var futureIconEl = document.createElement("img");
+                futureIconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
+                cardBody.append(futureIconEl);
+
+                var temp = data.daily[i].temp.day;
+                var futureTempEl = document.createElement("p");
+                futureTempEl.classList.add("card-text");
+                futureTempEl.append("Temp: " + temp + "°");
+                cardBody.append(futureTempEl);
+
+                var wind = data.daily[i].wind_speed;
+                var futureWindEl = document.createElement("p");
+                futureWindEl.classList.add("card-text");
+                futureWindEl.append("Wind: " + wind + " MPH");
+                cardBody.append(futureWindEl);
+
+                var humidity = data.daily[i].humidity;
+                var futureHumidityEl = document.createElement("p");
+                futureHumidityEl.classList.add("card-text");
+                futureHumidityEl.append("Humidity: " + humidity + "%");
+                cardBody.append(futureHumidityEl);
+
+                card.append(cardBody);
                 fiveDayForecastEl.append(card);
             }
+
         })
     return;
 }
@@ -144,18 +168,19 @@ function handleClearHistory(event) {
     var pastSearchesEl = $("#pastSearches");
     localStorage.removeItem("cities");
     pastSearchesEl.innerHTML = ('');
+    location.reload();
     return;
 }
 
 function clearCurrentCityWeather() {
-    var currentConditionsEl = $("#currentConditions");
-    currentConditionsEl.innerHTML = "";
+    
+    document.getElementById("currentConditions").innerHTML = '';
 
-    var fiveDayForecastTitleEl = $("#fivedayForecastTitle");
-    fiveDayForecastTitleEl.innerHTML = "";
+    document.getElementById("fiveDayForecastTitle").innerHTML = '';
 
-    var fiveDayForecastEl = $("#fiveDayForecast");
-    fiveDayForecastEl.innerHTML = "";
+    document.getElementById("fiveDayForecast").innerHTML = '';
+
+    document.getElementById("pastSearches").innerHTML = '';
 
     return;
 }
@@ -198,6 +223,7 @@ function getPastCity (event) {
                 getWeather(data);
             })
     }
+    displayPastSearches();
     return;
 }
 

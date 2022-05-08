@@ -11,7 +11,7 @@ body {
 header {
     text-align: center;
     color: white;
-    background-image: radial-gradient(circle, #0345fc, #03a9fc, #f5ec42);
+    background-image: radial-gradient(circle, #0345fc, #03a9fc, #f5ec42, white);
 }
 
 header h1 {
